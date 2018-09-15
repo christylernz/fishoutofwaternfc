@@ -10,25 +10,27 @@
     <body>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
             <a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a> 
-            <span class="align-bottom text-white font-weight-bold">Product Verifier</span>
+            <span class="align-bottom text-white font-weight-bold">Verifier</span>
         </nav>
         <br/><br/><br/><p class="ml-1"></p>
-        <div id="home">
+        <div class="ml-2 mr-2"><div id="home">
             <p>This page will help you to verify that your product is genuine. For our proof of concept we are using Sealord. Click on the button to use our product verification service.</p>
            <button class="btn btn-primary btn-lg btn-block" onclick="showInDoubt()">Click to Verify</button>
         </div>
-        <div id="genuineContainer" class="d-none">
-
-            <div class="alert alert-success" role="alert">Certified Genuine Sealord Product</div>
-            <div id="genuine">Loading Details...</div>
-             
-            
+        <div id="genuineContainer" class="d-none ml-2 mr-2">
+            <div class="alert alert-success" role="alert" ><p class="text-center"><b>Certified Genuine Sealord Product</b></p>
+            </div>
+            <img class="rounded mx-auto d-block" src="img/product.png"  />
+            <div id="genuine"></div>
         </div>
-        <div id="inDoubtContainer" class="d-none">
-            <div class="alert alert-danger" role="alert">Sealord is unable to verify this product. Please contact Sealord for further assistance with our products.<br/><a href="mailto:#">genuine@thisisnotsealord.co.nz</a></div>
+        <div id="inDoubtContainer" class="d-none ml-2 mr-2">
+            <div class="alert alert-danger" role="alert">
+                <img class="border border-dark rounded mx-auto d-block" src="img/indoubt.png" />
+                <p class="mt-3">Sealord is unable to verify this product. Please contact Sealord for further assistance with our products.</p><a  href="mailto:#">genuine@thisisnotsealord.co.nz</a></div>
             <div id="inDoubt"></div>
         </div>
-        
+      </div>
+    
         
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <script src="https://christylernz.github.io/fishoutofwaternfc/js/bootstrap.min.js"></script>

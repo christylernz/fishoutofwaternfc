@@ -44,22 +44,22 @@ function callTranzparency(container){
             } else {
                 buildInDoubtHTML(data, container);
             }
-            //document.getElementById('name').innerHTML = data[1].Fishid;
-            //document.getElementById('name').innerHTML = JSON.stringify(msg);
+           
         }
     });
 }
 function buildGenuineHTML(jsonArray, container){
     var productType = jsonArray[0].ProductType;
-    productType = "Tuna in Spring Water"
-    var htmlString = '<div class="container"><div class="row"><div class="col-sm-6">This ' + productType +  ' made this journey to your plate: </div>';
+    //productType = "Tuna in Spring Water"
+    var htmlString = '<div class="container"><div class="row"><div class="col-sm-6">To reach your plate, this <b>' + productType +  '</b> had these stops:</div>';
     $.each(jsonArray,function(i,jsonObject) {
         htmlString += '<div class="col-sm-6">';
-        htmlString += '<br/>At ' + jsonObject.DateTimeStamp;
-        htmlString += ' the ' + jsonObject.ProductType;
-        htmlString += ' was at ' + jsonObject.Geolocation;
-        htmlString += ' for ' + jsonObject.EventType;
-        htmlString += '<br/>Other Information: ' + jsonObject.Info;
+        htmlString += '<br/><h1>' + jsonObject.EventType + '</h1>';
+        htmlString += jsonObject.DateTimeStamp;
+        htmlString += '<br/>' + jsonObject.Info;
+        htmlString += '<br/><a href="#'+jsonObject.Geolocation+'">View stop location</a>' ;
+        
+        
         htmlString += '<br/></div>';
     });
     htmlString += '</div></div>';
