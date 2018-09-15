@@ -9,43 +9,30 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="btn btn-primary" role="button" class="nav-link" href="#" onclick="verifyDemo();return false;">Verify<span class="sr-only">(current)</span></a>
-              </li>
-            </ul>
-          </div>
+            <a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a> 
+            <span class="align-bottom text-white font-weight-bold">Product Verifier</span>
         </nav>
         <br/><br/><br/>
+         <button class="btn btn-primary btn-lg btn-block" onclick="verifyDemo()">Click to Verify</button>
         <div id="home">
-            <button class="btn btn-primary btn-lg btn-block" onclick="verifyDemo()">Click to Verify</button>
+           
         </div>
+         
+        <div id="genuineContainer" class="d-none">
             
-        <div id="genuine" class="d-none">
-             <div class="container">
-              <div class="row">
-                <div class="col-sm-6">
-                  Genuine
-                </div>
-                <div class="col-sm-6">
-                  <div id="name"></div>>
-                </div>
-              </div>
-            </div> 
+            <div class="alert alert-success" role="alert">Certified Genuine Sealord Product</div>
+            <div id="genuine">Loading Details...</div>
+             
+            
         </div>
-        <div id="indoubt" class="d-none">
-            Indoubt
-            <div id="name"></div>
+        <div id="inDoubtContainer" class="d-none">
+            <div class="alert alert-danger" role="alert">Sealord is unable to verify this product. Please contact Sealord for further assistance with our products<br/><a href="mailto:#">genuine@thisisnotsealord.co.nz</a></div>
+            <div id="inDoubt">Loading Details...</div>
         </div>
         
         
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
       <script src="https://christylernz.github.io/fishoutofwaternfc/js/bootstrap.min.js"></script>
-      <script src="https://christylernz.github.io/fishoutofwaternfc/js/verify.js"></script>
+      <script src="js/verify.js"></script>
     </body>
 </html>
