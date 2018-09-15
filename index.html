@@ -10,19 +10,16 @@
             </p>
                   
             <pre id="log"></pre>
-            <p id="version">Build 12</p>
+            <p id="version">Build 13</p>
         <script>
             function writeNfc() {
                 if ('nfc' in navigator) {
                     consoleLog("Sending to NFC.");
-                    try { 
-                        navigator.nfc.push([{
-                            url: message.url,
-                            data: [{
-                                recordType: "text",
-                                data: 'Hello World'
-                            }]
-                        }]);
+                    try {
+                        navigator.nfc.push({
+                            url: "/custom/path",
+                            records: [{ recordType: "text", data: 'Hello World' }]
+                        });
                     } catch(err) {
                         consoleLog("Error: " + JSON.stringify(err));
                     }
