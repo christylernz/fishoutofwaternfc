@@ -10,18 +10,22 @@
             </p>
                   
             <pre id="log"></pre>
-            <p id="version">Build 11</p>
+            <p id="version">Build 12</p>
         <script>
             function writeNfc() {
                 if ('nfc' in navigator) {
                     consoleLog("Sending to NFC.");
-                    navigator.nfc.push([{
-                        url: message.url,
-                        data: [{
-                            recordType: "text",
-                            data: 'Hello World'
-                        }]
-                    }]);
+                    try { 
+                        navigator.nfc.push([{
+                            url: message.url,
+                            data: [{
+                                recordType: "text",
+                                data: 'Hello World'
+                            }]
+                        }]);
+                    } catch(err) {
+                        consoleLog("Error: " + JSON.stringify(err));
+                    }
                     consoleLog("Hello World sent via NFC.");
                 } else {
                     consoleLog('NFC API not supported.');
