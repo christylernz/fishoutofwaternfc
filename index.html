@@ -24,7 +24,12 @@
                         }]);
                         }
                         processMessage(message);
-                    }, {mode: 'any'})
+                    }, {
+                        url: "",
+                        recordType: "",
+                        mediaType: "",
+                        mode: "any"
+                    })
                     .then(() => consoleLog("Added a watch."))
                     .catch(err => consoleLog("Adding watch failed: " + err.name));
                 } else {
