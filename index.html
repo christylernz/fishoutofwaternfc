@@ -6,11 +6,21 @@
     <body>
             <p>
                 <button class="btn btn-lg btn-default" onclick="readWriteNfc()">Test NFC Read/Write</button>
+                <button class="btn btn-lg btn-default" onclick="writeNfc()">Test NFC Write</button>
             </p>
                   
             <pre id="log"></pre>
-            <p id="version">Build 7</p>
+            <p id="version">Build 8</p>
         <script>
+            function writeNfc() {
+                navigator.nff.push([{
+                    url: message.url,
+                            data: [{
+                            recordType: "text",
+                            data: 'Hello World'
+                            }]
+                }])
+            }
             function readWriteNfc() {
                 if ('nfc' in navigator) {
                     navigator.nfc.watch(function (message) {
