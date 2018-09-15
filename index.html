@@ -9,7 +9,7 @@
             </p>
                   
             <pre id="log"></pre>
-            <p id="version">Build 6</p>
+            <p id="version">Build 7</p>
         <script>
             function readWriteNfc() {
                 if ('nfc' in navigator) {
@@ -25,12 +25,7 @@
                         }]);
                         }
                         processMessage(message);
-                    }, {
-                        url: "",
-                        recordType: "",
-                        mediaType: "",
-                        mode: "any"
-                    })
+                    }, { mode: "any" })
                     .then(() => consoleLog("Added a watch."))
                     .catch(err => consoleLog("Adding watch failed: " + err.name));
                 } else {
