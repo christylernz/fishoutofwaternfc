@@ -38,7 +38,7 @@ function callTranzparency(){
         dataType: 'json',
         async: true,
         success: function(msg) {
-            data = JSON.parse(msg);
+            data = msg;
             document.getElementById('name').innerHTML = data[1].Fishid;
             //document.getElementById('name').innerHTML = JSON.stringify(msg);
         }
