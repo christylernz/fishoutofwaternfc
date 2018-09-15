@@ -44,7 +44,6 @@ function callTranzparency(){
         }
     });
 }
-
 //function TranzparencyCallback(){
     
 //}
