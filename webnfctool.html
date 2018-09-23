@@ -18,7 +18,7 @@
         </p>
 
         <pre id="log"></pre>
-        <p id="version">Build 28</p>
+        <p id="version">Build 29</p>
         <script>
             function writeNfc() {
                 if ('nfc' in navigator) {
@@ -27,8 +27,8 @@
                         navigator.nfc.push({
                             url: "/nfc/sealord",
                             records: [{
-                                recordType: "text",
-                                data: 'Hello World'
+                                recordType: "json",
+                                data: '{ "id" : "slfish001" }'
                             }]
                         });
                     } catch (err) {
@@ -53,7 +53,6 @@
                                   consoleLog("Message contains content.");
                                   processMessage(message);
                                 }
-                                consoleLog("Test");
                             } else {
                                 consoleLog("Url is undefined");
                                 writeNfc();
