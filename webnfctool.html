@@ -17,7 +17,7 @@
     </p>
 
     <pre id="log"></pre>
-    <p id="version">Build 19</p>
+    <p id="version">Build 20</p>
     <script>
         function writeNfc() {
             if ('nfc' in navigator) {
@@ -46,7 +46,7 @@
                         if (typeof(message.url) != "undefined") {
                             consoleLog("NFC message received from URL " + message.url);
                             if (message.data[0].recordType === 'empty') {
-                                consoleLog("NFC Message is empty.")
+                                consoleLog("NFC Message is empty.");
                                 writeNfc();
                             }
                             consoleLog("Message contains content.");
@@ -72,6 +72,7 @@
 
         function processMessage(message) {
             message.data.forEach(function(record) {
+                consoleLog("record Type is:" + record.recordType)
                 if (record.recordType == "text") {
                     consoleLog('Data is string: ' + record.data);
                 } else if (record.recordType == "json") {
