@@ -17,7 +17,7 @@
     </p>
 
     <pre id="log"></pre>
-    <p id="version">Build 20</p>
+    <p id="version">Build 21</p>
     <script>
         function writeNfc() {
             if ('nfc' in navigator) {
@@ -48,9 +48,10 @@
                             if (message.data[0].recordType === 'empty') {
                                 consoleLog("NFC Message is empty.");
                                 writeNfc();
+                            } else {
+                                consoleLog("Message contains content.");
+                                processMessage(message);
                             }
-                            consoleLog("Message contains content.");
-                            processMessage(message);
                         } else {
                             consoleLog("Url is undefined");
                             writeNfc();
