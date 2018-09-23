@@ -18,7 +18,7 @@
         </p>
 
         <pre id="log"></pre>
-        <p id="version">Build 27</p>
+        <p id="version">Build 28</p>
         <script>
             function writeNfc() {
                 if ('nfc' in navigator) {
@@ -75,7 +75,7 @@
 
             function processMessage(message) {
                 consoleLog("Processing Message");
-                message.data.forEach(function(record) {
+                message.records.forEach(function(record) {
                     consoleLog("Record type is: " + record.recordType);
                     if (record.recordType == "text") {
                         consoleLog('Data is string: ' + record.data);
