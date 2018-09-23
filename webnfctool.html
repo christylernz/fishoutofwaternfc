@@ -14,14 +14,14 @@
     </p>
 
     <pre id="log"></pre>
-    <p id="version">Build 16</p>
+    <p id="version">Build 17</p>
     <script>
         function writeNfc() {
             if ('nfc' in navigator) {
                 consoleLog("Sending to NFC.");
                 try {
                     navigator.nfc.push({
-                        url: "/custom/path",
+                        url: "http://tranzparency.co.nz/nfc/sealord",
                         records: [{
                             recordType: "string",
                             data: 'Hello World'
@@ -39,13 +39,19 @@
         function readNfc() {
             if ('nfc' in navigator) {
                 navigator.nfc.watch(function(message) {
-                        consoleLog("NFC message received from URL " + message.url);
-                        if (message.data[0].recordType === 'empty') {
-                            consoleLog("NFC Message is empty.")
+                        consoleLog("NFC device detected.")
+                        if (typeof(message.url) != "undefined") {
+                            consoleLog("NFC message received from URL " + message.url);
+                            if (message.data[0].recordType === 'empty') {
+                                consoleLog("NFC Message is empty.")
+                                writeNfc();
+                            }
+                            consoleLog("Message contains content.");
+                            processMessage(message);
+                        } else {
+                            consoleLog("Url is undefined");
                             writeNfc();
                         }
-                        consoleLog("Message contains content.");
-                        processMessage(message);
                     }, {
                         mode: "any"
                     })
