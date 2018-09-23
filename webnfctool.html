@@ -18,7 +18,7 @@
         </p>
 
         <pre id="log"></pre>
-        <p id="version">Build 25</p>
+        <p id="version">Build 26</p>
         <script>
             function writeNfc() {
                 if ('nfc' in navigator) {
@@ -46,11 +46,11 @@
                             consoleLog("NFC device detected.")
                             if (typeof(message.url) != "undefined") {
                                 consoleLog("NFC message received from URL " + message.url);
-                                //if (message.data[0].recordType === 'empty') {
-                                //    consoleLog("NFC Message is empty.");
-                                //    writeNfc();
-                                //} else {
-                                //    consoleLog("Message contains content.");
+                                if (message.data[0].recordType === 'empty') {
+                                    consoleLog("NFC Message is empty.");
+                                    writeNfc();
+                                }// else {
+                                consoleLog("Message contains content.");
                                 //    processMessage(message);
                                 //}
                                 consoleLog("Test");
