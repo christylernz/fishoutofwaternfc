@@ -17,7 +17,7 @@
     </p>
 
     <pre id="log"></pre>
-    <p id="version">Build 21</p>
+    <p id="version">Build 22</p>
     <script>
         function writeNfc() {
             if ('nfc' in navigator) {
@@ -42,25 +42,25 @@
         function readNfc() {
             if ('nfc' in navigator) {
                 navigator.nfc.watch(function(message) {
-                        consoleLog("NFC device detected.")
-                        if (typeof(message.url) != "undefined") {
-                            consoleLog("NFC message received from URL " + message.url);
-                            if (message.data[0].recordType === 'empty') {
-                                consoleLog("NFC Message is empty.");
-                                writeNfc();
-                            } else {
-                                consoleLog("Message contains content.");
-                                processMessage(message);
-                            }
-                        } else {
-                            consoleLog("Url is undefined");
+                    consoleLog("NFC device detected.")
+                    if (typeof(message.url) != "undefined") {
+                        consoleLog("NFC message received from URL " + message.url);
+                        if (message.data[0].recordType === 'empty') {
+                            consoleLog("NFC Message is empty.");
                             writeNfc();
+                        } else {
+                            consoleLog("Message contains content.");
+                            processMessage(message);
                         }
-                    }, {
-                        mode: "any"
-                    })
-                    .then(() => consoleLog("Added a watch."))
-                    .catch(err => consoleLog("Adding watch failed: " + err.name));
+                    } else {
+                        consoleLog("Url is undefined");
+                        writeNfc();
+                    }
+                }, {
+                    mode: "any"
+                })
+                .then(() => consoleLog("Added a watch."))
+                .catch(err => consoleLog("Adding watch failed: " + err.name));
             } else {
                 consoleLog('NFC API not supported.');
             }
