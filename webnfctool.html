@@ -21,9 +21,9 @@
                 consoleLog("Sending to NFC.");
                 try {
                     navigator.nfc.push({
-                        url: "http://tranzparency.co.nz/nfc/sealord",
+                        url: "/nfc/sealord",
                         records: [{
-                            recordType: "string",
+                            recordType: "text",
                             data: 'Hello World'
                         }]
                     });
@@ -69,7 +69,7 @@
 
         function processMessage(message) {
             message.data.forEach(function(record) {
-                if (record.recordType == "string") {
+                if (record.recordType == "text") {
                     consoleLog('Data is string: ' + record.data);
                 } else if (record.recordType == "json") {
                     processJSON(record.data);
