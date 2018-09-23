@@ -9,12 +9,12 @@
 
 <body>
     <p class="ml-2 mt-2">
-        <button class="btn btn-lg btn-default" onclick="readWriteNfc()">Test NFC Read/Write</button>
+        <button class="btn btn-lg btn-default" onclick="readNfc()">Test NFC Read</button>
         <button class="btn btn-lg btn-default" onclick="writeNfc()">Test NFC Write</button>
     </p>
 
     <pre id="log"></pre>
-    <p id="version">Build 14</p>
+    <p id="version">Build 15</p>
     <script>
         function writeNfc() {
             if ('nfc' in navigator) {
@@ -36,18 +36,12 @@
             }
         }
 
-        function readWriteNfc() {
+        function readNfc() {
             if ('nfc' in navigator) {
                 navigator.nfc.watch(function(message) {
                         consoleLog("NFC message received from URL " + message.url);
                         if (message.data[0].recordType === 'empty') {
-                            navigator.nfc.push([{
-                                url: message.url,
-                                data: [{
-                                    recordType: "string",
-                                    data: 'Hello World'
-                                }]
-                            }]);
+                            consoleLog("NFC Message is empty.")
                         }
                         processMessage(message);
                     }, {
