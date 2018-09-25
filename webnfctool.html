@@ -9,17 +9,30 @@
     <head>
         <title>Fish Out Of Water NFC</title>
         <link rel="stylesheet" href="https://christylernz.github.io/fishoutofwaternfc/css/bootstrap.min.css">
+        <script type="text/javascript" src="/js/webnfcwrapper.js"></script>
     </head>
 
     <body>
         <p class="ml-2 mt-2">
             <button class="btn btn-lg btn-default" onclick="readNfc()">Test NFC Read</button>
             <button class="btn btn-lg btn-default" onclick="writeNfc()">Test NFC Write</button>
+            <button class="btn btn-lg btn-default" onclick="writeTextToNFC()">Test NFC Wrapper</button>
         </p>
 
         <pre id="log"></pre>
-        <p id="version">Build 30</p>
+        <p id="version">Build 31</p>
         <script>
+            function writeTextToNFC() {
+                try {
+                    consoleLog(writeNFC("/nfc/sealord", "text", "fish001"));
+                } catch (err) {
+
+                    consoleLog("Error: " + err.name + " " + err.message);
+
+                }
+
+            }
+
             function writeNfc() {
                 if ('nfc' in navigator) {
                     consoleLog("Sending to NFC.");
@@ -50,8 +63,8 @@
                                     consoleLog("NFC Message is empty.");
                                     writeNfc();
                                 } else {
-                                  consoleLog("Message contains content.");
-                                  processMessage(message);
+                                    consoleLog("Message contains content.");
+                                    processMessage(message);
                                 }
                             } else {
                                 consoleLog("Url is undefined");
@@ -104,7 +117,6 @@
                 var obj = JSON.parse(data);
                 consoleLog("JSON data: " + obj.myProperty.toString());
             };
-
         </script>
     </body>
 
