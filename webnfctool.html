@@ -14,13 +14,13 @@
 
     <body>
         <p class="ml-2 mt-2">
-            <button class="btn btn-lg btn-default" onclick="readNfc()">Test NFC Read</button>
-            <button class="btn btn-lg btn-default" onclick="writeNfc()">Test NFC Write</button>
-            <button class="btn btn-lg btn-default" onclick="writeTextToNFC()">Test NFC Wrapper</button>
+            <button class="btn btn-lg btn-default" onclick="writeTextToNFC()">Test Write NFC Wrapper</button>
+            <button class="btn btn-lg btn-default" onclick="readTextFromNFC()">Test Read NFC Wrapper</button>
+
         </p>
 
         <pre id="log"></pre>
-        <p id="version">Build 31</p>
+        <p id="version">Build 32</p>
         <script>
             function writeTextToNFC() {
                 try {
@@ -33,50 +33,15 @@
 
             }
 
-            function writeNfc() {
-                if ('nfc' in navigator) {
-                    consoleLog("Sending to NFC.");
-                    try {
-                        navigator.nfc.push({
-                            url: "/nfc/sealord",
-                            records: [{
-                                recordType: "text",
-                                data: 'fish001'
-                            }]
-                        });
-                    } catch (err) {
-                        consoleLog("Error: " + JSON.stringify(err));
-                    }
-                    consoleLog("Hello World sent via NFC.");
-                } else {
-                    consoleLog('NFC API not supported.');
-                }
-            }
+            function readTextFromNFC() {
+                try {
+                    readNFC().then(function(val) {
+                        consoleLog(val);
+                    });
+                } catch (err) {
 
-            function readNfc() {
-                if ('nfc' in navigator) {
-                    navigator.nfc.watch(function(message) {
-                            consoleLog("NFC device detected.")
-                            if (typeof(message.url) != "undefined") {
-                                consoleLog("NFC message received from URL " + message.url);
-                                if (message.records[0].recordType === 'empty') {
-                                    consoleLog("NFC Message is empty.");
-                                    writeNfc();
-                                } else {
-                                    consoleLog("Message contains content.");
-                                    processMessage(message);
-                                }
-                            } else {
-                                consoleLog("Url is undefined");
-                                writeNfc();
-                            }
-                        }, {
-                            mode: "any"
-                        })
-                        .then(() => consoleLog("Added a watch."))
-                        .catch(err => consoleLog("Adding watch failed: " + err.name));
-                } else {
-                    consoleLog('NFC API not supported.');
+                    consoleLog("Error: " + err.name + " " + err.message);
+
                 }
             }
 
@@ -84,39 +49,6 @@
                 var logElement = document.getElementById('log');
                 logElement.innerHTML += '\n' + data;
             }
-
-            function processMessage(message) {
-                consoleLog("Processing Message");
-                message.records.forEach(function(record) {
-                    consoleLog("Record type is: " + record.recordType);
-                    if (record.recordType == "text") {
-                        consoleLog('Data is string: ' + record.data);
-                    } else if (record.recordType == "json") {
-                        processJSON(record.data);
-                    } else if (record.recordType == "url") {
-                        consoleLog("Data is URL: " + record.data);
-                    } else if (record.recordType == "opaque" && record.mediaType == 'image/png') {
-                        processPng(record.data);
-                    } else {
-                        consoleLog("Unable to determine content");
-                    }
-                });
-            }
-
-            function processPng(data) {
-                consoleLog("Known image/png data");
-
-                var img = document.createElement("img");
-                img.src = URL.createObjectURL(new Blob(data, 'image/png'));
-                img.onload = function() {
-                    window.URL.revokeObjectURL(this.src);
-                };
-            };
-
-            function processJSON(data) {
-                var obj = JSON.parse(data);
-                consoleLog("JSON data: " + obj.myProperty.toString());
-            };
         </script>
     </body>
 
