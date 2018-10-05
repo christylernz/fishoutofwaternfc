@@ -20,7 +20,7 @@
         </p>
 
         <pre id="log"></pre>
-        <p id="version">Build 32</p>
+        <p id="version">Build 33</p>
         <script>
             function writeTextToNFC() {
                 try {
@@ -35,7 +35,7 @@
 
             function readTextFromNFC() {
                 try {
-                    readNFC().then(function(val) {
+                    readNFC(function(message){ consoleLog(JSON.stringify(message)) }).then(function(val) {
                         consoleLog(val);
                     });
                 } catch (err) {
